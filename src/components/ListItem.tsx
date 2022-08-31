@@ -1,14 +1,22 @@
 import React from 'react'
+import { deleteBook } from '../features/bookSlice'
+import { useDispatch } from 'react-redux'
 
 interface Props {
   item: Book
 }
 const ListItem: React.FC<Props> = (props: Props) => {
   const { item } = props
-  const borrowBook = (book: Book): string => {
-    console.log('borrowABook', book)
-    return ''
+  const dispatch = useDispatch()<AppDispatch>
+
+  const borrowBook = (book: BookPreview): any => {
+    console.log('borrowBook', book)
   }
+
+  const deleteFc = (): any => {
+    dispatch(deleteBook(item.id))
+  }
+
   return (
     <li className="list-group-item">
       <div className="d-flex justify-content-between align-items-center">
@@ -22,6 +30,12 @@ const ListItem: React.FC<Props> = (props: Props) => {
             onClick={() => borrowBook(item)}
           >
             Borrow
+          </button>
+          <button
+            className="btn btn-sm btn-danger ms-2"
+            onClick={() => deleteFc()}
+          >
+            Delete
           </button>
         </div>
       </div>

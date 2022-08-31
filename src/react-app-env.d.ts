@@ -5,6 +5,11 @@ interface Book {
   createdAt: string
 }
 
+interface BookPreview {
+  name: string
+  author: string
+}
+
 interface IStoreState {
   books: Book[]
   status: string

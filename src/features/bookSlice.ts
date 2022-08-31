@@ -14,7 +14,7 @@ export const fetchBooks = createAsyncThunk('books/fetchBooks', async () => {
 
 export const addNewBook = createAsyncThunk(
   'books/addNewBook',
-  async (book: Book) => {
+  async (book: BookPreview) => {
     const response = await server.req('/books', 'POST', book)
     return response.data
   }
@@ -48,7 +48,6 @@ const booksSlice = createSlice({
       .addCase(addNewBook.fulfilled, (state, action) => {
         state.books.push(action.payload)
       })
-
       .addCase(deleteBook.fulfilled, (state, action) => {
         state.books.splice(
           state.books.findIndex((book: Book) => book.id === action.payload),

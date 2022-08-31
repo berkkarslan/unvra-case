@@ -1,7 +1,8 @@
+import React from 'react'
 import { NavLink } from 'react-router-dom'
 
-function Navbar() {
-  const activeCheck = (isActive: any) =>
+const Navbar: React.FC = () => {
+  const activeCheck = (isActive: boolean): string =>
     isActive ? 'nav-link active' : 'nav-link'
   return (
     <nav className="navbar navbar-expand-lg navbar-dark bg-primary">

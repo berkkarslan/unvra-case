@@ -1,20 +1,24 @@
-export async function server(endpoint: string, method: string, body?: unknown) {
+export async function server(
+  endpoint: string,
+  method: string,
+  body?: object | null
+): Promise<any> {
   const headers = { 'Content-Type': 'application/json' }
-  const base_url = 'https://630f056e498924524a8423e9.mockapi.io/'
+  const baseUrl = 'https://630f056e498924524a8423e9.mockapi.io/'
   const config: RequestInit = {
-    method: method,
+    method,
     headers: {
       ...headers,
     },
   }
 
-  if (body) {
+  if (body !== null) {
     config.body = JSON.stringify(body)
   }
 
   let data
   try {
-    const response = await window.fetch(base_url + endpoint, config)
+    const response = await window.fetch(baseUrl + endpoint, config)
     data = await response.json()
     if (response.ok) {
       // Return a result object similar to Axios
@@ -29,14 +33,14 @@ export async function server(endpoint: string, method: string, body?: unknown) {
   } catch (err) {
     let message = 'Unknown Error'
     if (err instanceof Error) message = err.message
-    return Promise.reject(message ? message : data)
+    return await Promise.reject(message)
   }
 }
 
-server.req = function (
+server.req = async function (
   endpoint: string,
   method: string = 'GET',
-  body?: unknown
+  body?: object
 ) {
-  return server(endpoint, method, body)
+  return await server(endpoint, method, body)
 }

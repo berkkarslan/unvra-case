@@ -1,6 +1,17 @@
-# Getting Started with Create React App
+# Getting Started with Univera Case 
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+Proje için gerekli olan komutlar aşağıda listelenmiştir.
+
+Proje 4 Ekrandan oluşmaktır. 
+
+
+`home` sayfasında bulunan tüm kitapları görüntüleyebilir, silebilir yada ödünç verebilirsiniz.
+
+kitaplarınn yannındaki `borrow` buttonuna bastığınızda açılan ekrandan kitabı kime ödünç vereceğinizi yazıp, 15 gün teslim süresi olan işlemi başlatabilirsiniz.
+
+`add book` sayfasında yeni kitaplar ekleyebilirsiniz.
+
+`borrowing` sayfasında bugün teslim edilmesi gereken kitaplar ve altındaki listeden ödünç verilen tüm kitapları görüntüleyebilirsiniz.
 
 ## Available Scripts
 

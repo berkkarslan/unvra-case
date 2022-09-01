@@ -25,7 +25,7 @@ const AddPage: React.FC = () => {
         <input
           className="form-control"
           id="bookInput"
-          placeholder=""
+          placeholder="Book Name"
           value={name}
           onChange={e => setName(e.target.value)}
         />
@@ -35,7 +35,7 @@ const AddPage: React.FC = () => {
         <input
           className="form-control"
           id="authorInput"
-          placeholder=""
+          placeholder="Author"
           value={author}
           onChange={e => setAuthor(e.target.value)}
         />

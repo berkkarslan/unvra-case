@@ -12,7 +12,6 @@ interface BookPreview {
 
 interface Borrowing {
   book_id: string
-  book_name: string
   username: string
   return_date: number
   id: string

@@ -14,10 +14,18 @@ const BorrowBookPage: React.FC = () => {
     return null
   }
   const book = useSelector(state => findBook(state, id))
+  const today = Date.now()
+  const returnDate = new Date(today + 1000 * 60 * 60 * 24 * 14)
 
   const saveBorrow = (): any => {
     try {
-      dispatch(addToList({ book_id: id, username: name }))
+      dispatch(
+        addToList({
+          book_id: id,
+          username: name,
+          return_date: returnDate.getTime(),
+        })
+      )
       navigate('/')
     } catch (error) {
       console.error(error)
@@ -38,7 +46,9 @@ const BorrowBookPage: React.FC = () => {
           onChange={e => setName(e.target.value)}
         />
       </div>
-
+      <p className="my-2">
+        Calculated Return Date : <i>{returnDate.toDateString()}</i>
+      </p>
       <button
         type="submit"
         className="btn btn-primary mt-2"

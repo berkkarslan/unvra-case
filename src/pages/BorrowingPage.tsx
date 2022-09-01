@@ -1,9 +1,8 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
 import { selectAllBorrowings, fetchBorrowings } from '../features/librarySlice'
-import ListItem from '../components/ListItem'
+import BorrowTable from '../components/BorrowTable'
 const BorrowingPage: React.FC = () => {
-  const [search, setSearch] = useState('')
   const dispatch = useDispatch()<AppDispatch>
   const borrowings: Borrowing[] = useSelector(selectAllBorrowings)
   const borrowingState = useSelector(
@@ -16,39 +15,21 @@ const BorrowingPage: React.FC = () => {
     }
   }, [borrowingState, dispatch])
 
+  const isToday = (date: number): boolean => {
+    const today = new Date()
+    const returnDate = new Date(date)
+    return today.toDateString() === returnDate.toDateString()
+  }
+
   return (
     <div className="">
-      <div className="d-flex justify-content-between">
-        <h1>Borrowing Books</h1>
-        <div>
-          <input
-            type="text"
-            className="form-control"
-            placeholder="Search"
-            value={search}
-            onChange={e => setSearch(e.target.value)}
-          />
-        </div>
-      </div>
-      <table className="table table-striped w-100 mt-3">
-        <thead>
-          <tr>
-            <th>Book Name</th>
-            <th>Borrower</th>
-            <th>Return Date</th>
-            <th></th>
-          </tr>
-        </thead>
-        <tbody>
-          {borrowings
-            .filter(borrowing =>
-              borrowing.username.toLowerCase().includes(search.toLowerCase())
-            )
-            .map(borrowing => (
-              <ListItem key={borrowing.id} item={borrowing} />
-            ))}
-        </tbody>
-      </table>
+      <BorrowTable
+        data={borrowings
+          .filter(borrowing => isToday(borrowing.return_date))
+          .sort((a, b) => a.return_date - b.return_date)}
+        title="Books to be delivered today"
+      />
+      <BorrowTable data={borrowings} title="All borrowed books" />
     </div>
   )
 }

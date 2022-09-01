@@ -21,6 +21,7 @@ interface Borrowing {
 interface BorrowForm {
   book_id: string
   username: string
+  return_date: number
 }
 
 interface IStoreState {

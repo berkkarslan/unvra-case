@@ -21,7 +21,7 @@ export const addToList = createAsyncThunk(
     const borrowItem = {
       book_id: form.book_id,
       username: form.username,
-      return_date: Date.now(),
+      return_date: form.return_date,
     }
     const response = await server.req('/borrowings', 'POST', borrowItem)
     return response.data

@@ -10,8 +10,27 @@ interface BookPreview {
   author: string
 }
 
+interface Borrowing {
+  book_id: string
+  book_name: string
+  username: string
+  return_date: number
+  id: string
+}
+
+interface BorrowForm {
+  book_id: string
+  username: string
+}
+
 interface IStoreState {
   books: Book[]
+  status: string
+  error: undefined | null | string
+}
+
+interface BorrowingStore {
+  borrowings: Borrowing[]
   status: string
   error: undefined | null | string
 }

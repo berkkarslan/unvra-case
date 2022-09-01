@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react'
-import { selectAllBooks, fetchBooks } from '../features/bookSlice'
 import { useSelector, useDispatch } from 'react-redux'
-import ListItem from '../components/ListItem'
+import { selectAllBooks, fetchBooks } from '../features/bookSlice'
+import ListItem from '../components/BookItem'
 const Home: React.FC = () => {
   const [search, setSearch] = useState('')
   const dispatch = useDispatch()<AppDispatch>

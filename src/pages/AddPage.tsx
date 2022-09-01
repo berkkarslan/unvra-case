@@ -1,18 +1,25 @@
 import React, { useState } from 'react'
-import { addNewBook } from '../features/bookSlice'
+import { useNavigate } from 'react-router-dom'
 import { useDispatch } from 'react-redux'
+import { addNewBook } from '../features/bookSlice'
 
 const AddPage: React.FC = () => {
   const [name, setName] = useState('')
   const [author, setAuthor] = useState('')
-
+  const navigate = useNavigate()
   const dispatch = useDispatch()<AppDispatch>
 
   const saveBook = (): any => {
-    dispatch(addNewBook({ name, author }))
+    try {
+      dispatch(addNewBook({ name, author }))
+      navigate('/')
+    } catch (error) {
+      console.error(error)
+    }
   }
   return (
     <div>
+      <h1>Add Book</h1>
       <div className="form-group">
         <label htmlFor="bookInput">Book Name</label>
         <input
